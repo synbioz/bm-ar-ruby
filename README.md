@@ -12,7 +12,9 @@ Configure your `config/database.yml`.
 
 ## Inject some datas
 
-  bundle exec ruby db/seed.rb
+You can specify the amount of lines you want, defaut is 1 million.
+
+  LINES=10_000 bundle exec ruby db/seed.rb
 
 ## Run the benchmark
 

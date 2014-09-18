@@ -1,5 +1,7 @@
 require_relative 'configuration'
 
+lines = ENV['LINES'] ? ENV['LINES'] : 1_000_000
+
 Dir.glob('./models/*.rb') { |m| require m }
 Post.delete_all
 Rating.delete_all
@@ -7,7 +9,7 @@ Rating.delete_all
 puts "Seeding posts…"
 sql_post = "insert into posts
   select t.id as id
-  from (select * from generate_series(1,2000000) as id)
+  from (select * from generate_series(1,#{lines}) as id)
   as t;"
 ActiveRecord::Base.connection.execute(sql_post)
 
